@@ -5,6 +5,7 @@ const App = () => {
   return (
     <div>
      <p>Hello world!</p>
+      <p>Hello world(by Dima)!</p>
     </div>
   )
 }
