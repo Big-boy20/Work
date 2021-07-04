@@ -1,14 +1,37 @@
 .login__text{
-    color: rgb(12, 12, 12);
+    color: rgb(255, 255, 255);
+    padding-top: 35px;
+    
 }
 .button__login{
-background-color: rgb(51, 21, 160);
+background-color: #6246c0;
 margin-top: 15px;
 color: #fff;
-padding: 0 68PX;
+padding: 10px 172pX;
+margin-top: 25px;
+border: none;
 
 }
-.login__container{
-    margin-left: 43%;
+.container{
+    margin-left: 740px;
     margin-top: 280px;
+    width: 100%; height:100%;
+}
+
+body{
+    width: 100vh; height: 100vh;
+    background: radial-gradient(
+    ellipse at left bottom,
+    rgba(22, 24, 47, 1) 0%,
+    rgba(38, 20, 72, 0.9) 59%,
+    rgba(17, 27, 75, 0.9) 100%
+  );
+}
+.dataIn{
+    width: 400px;
+    padding: 15px 30PX;
+    background-color: #4b4168;
+    color:aliceblue;
+    margin-top: 5px;
+    border: 0px;
 }
