@@ -35,3 +35,10 @@ body{
     margin-top: 5px;
     border: 0px;
 }
+html {
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    
+     }
+    
