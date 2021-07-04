@@ -1,0 +1,14 @@
+.login__text{
+    color: rgb(12, 12, 12);
+}
+.button__login{
+background-color: rgb(51, 21, 160);
+margin-top: 15px;
+color: #fff;
+padding: 0 68PX;
+
+}
+.login__container{
+    margin-left: 43%;
+    margin-top: 280px;
+}
