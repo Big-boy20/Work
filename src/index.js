@@ -1,18 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './components/app/app'
 
-import Login from './components/login/login.js'
-
-
-const App = () => {
+const MainApp = () => {
   return (
-    
     <div>
-      <Login/>
-    
+      <App/>
     </div>
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
-
+ReactDOM.render(<MainApp/>, document.getElementById('root'))
