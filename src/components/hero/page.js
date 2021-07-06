@@ -3,33 +3,38 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
+import { green, cyan } from '@material-ui/core/colors';
 
 
 
-
-
+//const primary = red[500];
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
+  '@global':{
+    body:{
+      backgroundColor:"#382E7E"
+    }
+    
+},
+
   root: {
     display: 'flex',
   },
-  green: {
-    backgroundColor:"#17B40A",
+  purple: {
+   background: 'radial-gradient( ellipse at left bottom,rgba(22, 24, 47, 1) 0%,rgba(38, 20, 72, 0.9) 59%,rgba(17, 27, 75, 0.9) 100%)',
   },
   toolbar: {
     paddingRight: 24, 
@@ -38,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    padding: '0 20px',
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -58,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: 36,
+    width: 40,
   },
   menuButtonHidden: {
     display: 'none',
@@ -100,9 +106,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    
+    
   },
   fixedHeight: {
     height: 240,
+  },
+  rightbg: {
+    backgroundColor: "#673ab7",
   },
 }));
 
@@ -116,22 +127,25 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  
+ 
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar, classes.green}>
-          <IconButton
+        <Toolbar className={classes.toolbar, classes.purple}>
+          <IconButton 
+          style={{ color: cyan[50] }}
             edge="start"
-            color="#17B40A"
+            color=""
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="#17B40A" noWrap className={classes.title, classes.green}>
+          <Typography component="h1" variant="h6"  noWrap className={classes.title, classes.purple}>
             Admin Panel
           </Typography>
           
@@ -172,5 +186,6 @@ export default function Dashboard() {
         </Container>
       </main>
     </div>
-  );
+
+);
 }
