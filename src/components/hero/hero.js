@@ -1,9 +1,11 @@
+/* eslint-disable no-sequences */
+/* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -14,24 +16,31 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems } from './listItems';
-import { green, cyan } from '@material-ui/core/colors';
+import ListItems from './ListItems';
+import {  cyan } from '@material-ui/core/colors';
+import Profile from "./Profile.js"
+import {BrowserRouter, Route} from 'react-router-dom'
+import History from "./History.js"
+import Create from "./Create.js"
 
 
 
-//const primary = red[500];
+
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles((theme) => ({
   '@global':{
     body:{
       backgroundColor:"#382E7E"
-    }
+    },
+   
 },
   widthLogut:{
     width:'60px' ,
     float: "right",
     background:"none",
+    fontSize:"20px"
     
   },
   root: {
@@ -102,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -110,15 +119,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    
-    
   },
   fixedHeight: {
-    height: 240,
+    height: "auto",
   },
   rightbg: {
     backgroundColor: "#673ab7",
+    
   },
+
+  
+
 }));
 
 const Hero = ({handleLogout}) => {
@@ -135,13 +146,14 @@ const Hero = ({handleLogout}) => {
   
   
   return (
+    <BrowserRouter>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar, classes.purple}>
           <IconButton 
           style={{ color: cyan[50] }}
-            edge="start"
+            edge="end"
             color=""
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -168,7 +180,7 @@ const Hero = ({handleLogout}) => {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <ListItems/>
         <Divider />
         
       </Drawer>
@@ -178,10 +190,17 @@ const Hero = ({handleLogout}) => {
           <Grid container spacing={1}>
            
             {/* Recent Deposits */}
-            <Grid item xs={12} md={12} lg={14}>
-              <Paper className={fixedHeightPaper}>
-                
-              </Paper>
+            <Grid item xs zeroMinWidth>
+            <Paper className={fixedHeightPaper}>
+              
+              <Route path="/Profile" component={Profile}/>    
+              <Route path="/Create" component={Create}/> 
+              <Route path="/History" component={History}/> 
+              <Route path="/Accesstime" component={Profile}/> 
+              <Route path="/ControlAdmins" component={Profile}/> 
+              <Route path="/LockAdd" component={Profile}/> 
+              
+            </Paper>
             </Grid>
             
            
@@ -190,7 +209,7 @@ const Hero = ({handleLogout}) => {
         </Container>
       </main>
     </div>
-
+    </BrowserRouter>
 );
 }
 

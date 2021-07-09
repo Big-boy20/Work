@@ -1,58 +1,100 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import CreateIcon from '@material-ui/icons/Create';
 import HistoryIcon from '@material-ui/icons/History';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import AccessibleForwardIcon from '@material-ui/icons/AccessibleForward';
 import PeopleIcon from '@material-ui/icons/People';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import LockIcon from '@material-ui/icons/Lock';
+import { NavLink } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
-
-
-
-
-export const mainListItems = (
+const useStyles = makeStyles((theme) => ({
   
+  TextTableStyle :{
+    marginBottom:"20px",
+  },
+  '@global':{
+    '.MuiListItem-gutters':{
+      paddingRight:"0px",
+     },
+    },
+  naw:{
+display:"flex",
+textDecoration:"none",
+    color:"#000",
+    fontSize:"16px",
+    paddingBottom:"1px",
+    alignitems: "center",
+    width: "245px",
+    '&:hover': {
+      textDecoration:"none",
+      color:"#000",
+    }
+  },
+
+}));
+
+
+
+export default function MainListItems  () {
+  const classes = useStyles();
+  return (
   <div>
-    <ListItem button>
+   
+    <ListItem>
+    <NavLink to ="/Profile" className={classes.naw}>
+    <CssBaseline />
       <ListItemIcon>
         <AccessibleForwardIcon />
       </ListItemIcon>
-      <ListItemText primary="Profile" />
+     Profile</NavLink>
     </ListItem>
-
-    <ListItem button>
+ 
+    <ListItem >
+    <NavLink className={classes.naw} to ="/Create">
       <ListItemIcon>
         <CreateIcon />
       </ListItemIcon>
-      <ListItemText primary="Create" />
+      Create</NavLink> 
     </ListItem>
-    <ListItem button>
+
+
+    <ListItem >
+    <NavLink className={classes.naw} to ="/History">
       <ListItemIcon>
         <HistoryIcon />
       </ListItemIcon>
-      <ListItemText primary="History" />
+      History</NavLink>
     </ListItem>
-    <ListItem button>
+
+    <ListItem >
+    <NavLink className={classes.naw} to ="/AccessTime">
       <ListItemIcon>
         <AccessTimeIcon />
       </ListItemIcon>
-      <ListItemText primary="AccessTime" />
+      AccessTime</NavLink>
     </ListItem>
-    <ListItem button>
+
+    <ListItem >
+    <NavLink className={classes.naw} to ="/ControlAdmins">
     <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Control Admins" />
+     Control Admins</NavLink>
     </ListItem>
+    <ListItem  >
+    <NavLink className={classes.naw} to ="/lockAdd">
+    <ListItemIcon>
+        <LockIcon />
+      </ListItemIcon>
+      lock add</NavLink>
+    </ListItem>
+  
   </div>
-);
-
+  )
+};
 

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import fire from '../fire'
+import {fire} from '../fire'
 import Login from '../login/login'
 import Hero from '../hero/hero'
+import ForgotPassword from '../forgotPassword/forgotPassword'
 import './app.css'
+const USER_STATE = ['UNAUTHORIZED', 'AUTHORIZED', 'DEFAULT']
 
 const App = () => {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState(USER_STATE[2])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
-
+  const [forgotPassword, setForgotPassword] = useState(false)
   const clearInputs = () => {
     setEmail('')
     setPassword('')
@@ -48,11 +50,12 @@ const App = () => {
 
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
+      if (user === null) setUser(USER_STATE[2])
       if (user) {
         clearInputs()
-        setUser(user)
+        setUser(USER_STATE[1])
       } else {
-        setUser('')
+        setUser(USER_STATE[0])
       }
     })
   }
@@ -61,10 +64,51 @@ const App = () => {
     authListener()
   }, [])
 
+  const forgotPass = (value) => {
+    setForgotPassword(value)
+  }
+
+  const sendPasswordReset = (email) => {
+    fire
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        var errorMessage = error.message
+        // ..
+      })
+  }
+
   return (
     <div className="App">
-      {user ? (
+      {user === USER_STATE[1] ? (
         <Hero handleLogout={handleLogout} />
+      ) : forgotPassword ? (
+        <ForgotPassword
+          forgotPass={forgotPass}
+          sendPasswordReset={sendPasswordReset}
+          email={email}
+          setEmail={setEmail}
+        />
+      ) : user === USER_STATE[2] ? (
+        <div className="lds-spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       ) : (
         <Login
           email={email}
@@ -74,6 +118,7 @@ const App = () => {
           handleLogin={handleLogin}
           emailError={emailError}
           passwordError={passwordError}
+          forgotPass={forgotPass}
         />
       )}
     </div>
