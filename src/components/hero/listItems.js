@@ -30,12 +30,15 @@ textDecoration:"none",
     paddingBottom:"1px",
     alignitems: "center",
     width: "245px",
+    '&.active':{
+      background : "#B4C7CA",
+  },
     '&:hover': {
       textDecoration:"none",
       color:"#000",
-    }
+    },
   },
-
+ 
 }));
 
 
@@ -46,7 +49,7 @@ export default function MainListItems  () {
   <div>
    
     <ListItem>
-    <NavLink to ="/Profile" className={classes.naw}>
+    <NavLink exact to ="/" className={classes.naw}>
     <CssBaseline />
       <ListItemIcon>
         <AccessibleForwardIcon />
@@ -72,7 +75,7 @@ export default function MainListItems  () {
     </ListItem>
 
     <ListItem >
-    <NavLink className={classes.naw} to ="/AccessTime">
+    <NavLink className={classes.naw} to ="/Accesstime">
       <ListItemIcon>
         <AccessTimeIcon />
       </ListItemIcon>
@@ -80,18 +83,18 @@ export default function MainListItems  () {
     </ListItem>
 
     <ListItem >
-    <NavLink className={classes.naw} to ="/ControlAdmins">
+    <NavLink className={classes.naw} to ="/Control">
     <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
      Control Admins</NavLink>
     </ListItem>
     <ListItem  >
-    <NavLink className={classes.naw} to ="/lockAdd">
+    <NavLink className={classes.naw} to ="/LockAdd">
     <ListItemIcon>
         <LockIcon />
       </ListItemIcon>
-      lock add</NavLink>
+      lock Control</NavLink>
     </ListItem>
   
   </div>

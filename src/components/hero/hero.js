@@ -22,7 +22,7 @@ import Profile from "./Profile.js"
 import {BrowserRouter, Route} from 'react-router-dom'
 import History from "./History.js"
 import Create from "./Create.js"
-
+import LockAdd from "./LockAdd.js"
 
 
 
@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Hero = ({handleLogout}) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -146,7 +146,7 @@ const Hero = ({handleLogout}) => {
   
   
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -154,7 +154,6 @@ const Hero = ({handleLogout}) => {
           <IconButton 
           style={{ color: cyan[50] }}
             edge="end"
-            color=""
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
@@ -174,11 +173,13 @@ const Hero = ({handleLogout}) => {
         }}
         open={open}
       >
+       
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
+      
         <Divider />
         <ListItems/>
         <Divider />
@@ -192,22 +193,24 @@ const Hero = ({handleLogout}) => {
             {/* Recent Deposits */}
             <Grid item xs zeroMinWidth>
             <Paper className={fixedHeightPaper}>
+            
               
-              <Route path="/Profile" component={Profile}/>    
+              <Route exact path="/" component={Profile}/>  
               <Route path="/Create" component={Create}/> 
               <Route path="/History" component={History}/> 
               <Route path="/Accesstime" component={Profile}/> 
-              <Route path="/ControlAdmins" component={Profile}/> 
-              <Route path="/LockAdd" component={Profile}/> 
-              
+              <Route path="/Control" component={Profile}/> 
+              <Route path="/LockAdd" component={LockAdd}/> 
+             
             </Paper>
             </Grid>
             
            
           </Grid>
-          
+        
         </Container>
       </main>
+     
     </div>
     </BrowserRouter>
 );

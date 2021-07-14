@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import { fire, storage } from '../fire'
 
@@ -6,6 +5,10 @@ const Profile = () => {
   const [currentUser, setCurrentUser] = useState('')
   const [image, SetImage] = useState(null)
   const [newPass, setNewPass] = useState(null)
+  const [wantTosetNewName, setWantTosetNewName] = useState(false)
+  const [wantTosetNewEmail, setWantTosetNewEmail] = useState(false)
+  const [newName, setNewName] = useState(null)
+  const [newEmail, setNewEmail] = useState(null)
 
   const handleChangeImg = (e) => {
     if (e.target.files[0]) {
@@ -49,14 +52,14 @@ const Profile = () => {
     console.log(imgURL)
   }
 
-  function setNewName() {
-    currentUser
-      .updateProfile({
-        displayName: 'Yaroslav',
-      })
-      .then(() => {})
-      .catch((error) => {})
-  }
+  // function setNewName() {
+  //   currentUser
+  //     .updateProfile({
+  //       displayName: 'Yaroslav',
+  //     })
+  //     .then(() => {})
+  //     .catch((error) => {})
+  // }
 
   useEffect(() => {
     fire.auth().onAuthStateChanged((user) => {
@@ -68,7 +71,7 @@ const Profile = () => {
     setNewPass(e.target.value)
     // console.log(newPass)
   }
- //   const newPassword = getASecureRandomPassword();
+  //   const newPassword = getASecureRandomPassword();
   const setNewPassword = (pass) => {
     currentUser
       .updatePassword(pass)
@@ -76,10 +79,38 @@ const Profile = () => {
         console.log('Update successful')
       })
       .catch((error) => {
-        console.log('Update not successful',error)
+        console.log('Update not successful', error)
       })
   }
 
+  const setNewNamefromInput = (e) => {
+    setNewName(e.target.value)
+  }
+
+  const setingNewName=(str)=>{
+    currentUser.updateProfile({
+      displayName: `${str}`,
+    }).then(() => {
+      console.log('Update successful') 
+    }).catch((error) => {
+      console.log('Update not successful')
+    });  
+    setWantTosetNewName(false)
+    window.location.reload()
+  }
+  const setNewEmailfromInput = (e) => {
+    setNewEmail(e.target.value)
+  }
+
+  const setingNewEmail=(str)=>{
+    currentUser.updateEmail(`${str}`).then(() => {
+      console.log('Update successful')
+    }).catch((error) => {
+      console.log('Update not successful')
+    });
+    setWantTosetNewEmail(false)
+    window.location.reload()
+  }
   return (
     <div className="wrap">
       <div className="profile">
@@ -124,28 +155,75 @@ const Profile = () => {
         <div className="rightBlock">
           <div className="text">
             <p>Name:</p>
-            <p>{currentUser.displayName}</p>
-            {/* <button onClick={setUserName} /> */}
+
+            {!wantTosetNewName ? (
+              <div className="strCont">
+                <p>{currentUser.displayName}</p>
+                <button
+                  className="passBtn NameBtn"
+                  onClick={() => setWantTosetNewName(true)}
+                >
+                  Сhange
+                </button>
+              </div>
+            ) : (
+              <div className="strCont">
+                <input
+                  className="changeInput"
+                  onChange={setNewNamefromInput}
+                ></input>
+                <button
+                  className="passBtn NameBtn"
+                  onClick={() => setingNewName(newName)}
+                >
+                  Confirm
+                </button>
+              </div>
+            )}
           </div>
           <div className="text">
             <p>Email:</p>
-            <p>{currentUser.email}</p>
+
+            {!wantTosetNewEmail ? (
+              <div className="strCont">
+                <p>{currentUser.email}</p>
+                <button
+                  className="passBtn EmailBtn"
+                  onClick={() => setWantTosetNewEmail(true)}
+                >
+                  Сhange
+                </button>
+              </div>
+            ) : (
+              <div className="strCont">
+                <input
+                  className="changeInput"
+                  onChange={setNewEmailfromInput}
+                ></input>
+                <button
+                  className="passBtn EmailBtn"
+                  onClick={() => setingNewEmail(newEmail)}
+                >
+                  Confirm
+                </button>
+              </div>
+            )}
           </div>
-          <div className="text">
+          {/* <div className="text">
             <p>UserID:</p>
             <p>{currentUser.uid}</p>
           </div>
           <div className="text">
             <p>ProviderId:</p>
             <p>{currentUser.providerId}</p>
-          </div>
+          </div> */}
           <div className="PasswordCont">
-            <p>
-              {/* {newPass} */}
-              Password:
-            </p>
+            <p>Password:</p>
             <input type="password" onChange={setNewPasswordfromInput}></input>
-            <button className="passBtn" onClick={() => setNewPassword(newPass)}>
+            <button
+              className="passBtn passBTN"
+              onClick={() => setNewPassword(newPass)}
+            >
               Сhange
             </button>
           </div>

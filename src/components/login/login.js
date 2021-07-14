@@ -9,11 +9,12 @@ const Login = (props) => {
     handleLogin,
     emailError,
     passwordError,
+    forgotPass
   } = props
   return (
     <section className="login">
       <div className="loginContainer">
-        <label>Username</label>
+        <label>Email</label>
         <input
           type="text"
           required
@@ -36,6 +37,7 @@ const Login = (props) => {
         <div className="btnContainer">
           <button onClick={handleLogin}>Sign in</button>
         </div>
+        <button onClick={()=>forgotPass(true)}>Forgot password?</button>
       </div>
     </section>
   )

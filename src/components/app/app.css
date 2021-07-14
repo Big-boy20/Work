@@ -5,7 +5,7 @@
   font-family: 'Nunito', sans-serif;
 }
 
- button {
+button {
   border: none;
   outline: none;
   width: 100%;
@@ -304,27 +304,41 @@
   background: #603bbb;
   cursor: pointer;
 }
-.text{
+.text {
   display: flex;
 }
-.text p{
+.text p {
   width: 200px;
 }
-.text p+p{
-  font-weight: 700;
-}
-.PasswordCont{
+
+.PasswordCont {
   display: flex;
 }
-.PasswordCont > input{
+.PasswordCont > input {
   width: 300px;
   height: 50px;
   margin-left: 38px;
-} 
-.passBtn{
+}
+.passBtn {
   width: 100px;
   height: 50px;
-  background-color: #603BBB;
+  background-color: #603bbb;
   margin-left: 20px;
   border-radius: 3%;
+}
+.passBTN {
+  margin-left: 217px;
+}
+.strCont {
+  display: flex;
+}
+.strCont > p {
+  font-weight: 700;
+  width: 500px;
+}
+.changeInput {
+  width: 300px;
+  height: 50px;
+  margin-left: 3px;
+  margin-right: 197px;
 }
